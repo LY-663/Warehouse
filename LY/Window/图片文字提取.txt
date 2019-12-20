@@ -1,0 +1,21 @@
+TesseractEngine ocr;
+            ocr = new TesseractEngine("./tessdata", "chi_sim");//设置语言   中文
+            Bitmap bmp = new Bitmap(txtFile.Text);//获取路径
+            pictureBox1.Image = bmp;//图片显示
+            Page page = ocr.Process(bmp);//文字识别
+            string str = page.GetText();//识别后的内容
+            page.Dispose();
+            txtPath.Text = str; 
+
+
+
+
+OpenFileDialog OFD = new OpenFileDialog();//打开文件
+            OFD.Filter = "(*.jpg,*.gif,*.png,*.jpeg)|*.JPG;*.GIF;*.BMP;*.PNG;*.JPEG";//文件格式
+            if (OFD.ShowDialog() == DialogResult.OK)//打开窗体
+            {
+                txtFile.Text = OFD.FileName;//接收路径
+                Bitmap bmp = new Bitmap(txtFile.Text);//获取路径
+                pictureBox1.Image = bmp;//图片显示
+                txtFile.Text = OFD.FileName;//接收路径
+            }

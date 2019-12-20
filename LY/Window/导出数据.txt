@@ -1,0 +1,33 @@
+-------------------------逐条导出-----------------------
+DataTable dt=new DataTable();
+dt.Cplumns.Add("列名称",typeof(string));
+..........
+
+DataRow dr=null;
+for(int i;i<DGV.Rows.Count;i++)
+{
+	if(Convert.ToBoolean(DGV.Rows[i].Cells[0].Value))
+	{
+		dr=dt.NewRow();
+		dr["列名称"]=DGV.Rows[i].Cells["列名"].Value;
+		dt.Rows.Add(dr);
+	}
+}
+
+--------------------------foreachd循环-----------------
+foreachd(DataGridViewRow dgv in this.DGV)
+{
+	...........................
+}
+
+--------------------------------------------------------
+
+ExcelTemplate expe=new ExcelTemplate();
+
+string Naber="";
+DataTable[] dgvs={dt};
+string[] sheets={"Excel提示名"};
+Naber=Application.StartupPath+"\\"+"Excel文件名"+".xls";
+
+expe.dgvExportExcel_dt(dgvs,Naber,sheets);
+Process.Start(Naber);

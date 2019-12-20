@@ -1,0 +1,4 @@
+StreamReader sr = new StreamReader("文件物理路径", Encoding.Default);
+            string content;
+
+            content = sr.ReadToEnd();

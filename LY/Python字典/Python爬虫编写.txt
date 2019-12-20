@@ -1,0 +1,179 @@
+1、PyChram开发环境的下载与安装
+
+
+Python爬虫的组件安装
+	Twisted安装包下载：
+	
+		1、Twisted安装包下载：
+			打开浏览器输入www.lfd.uci.edu／～gohlke/pythonlibs／连接找到Twisted-19.10.0-cp38-cp38-win_amd64(该安装包为64位，根据Python的版本位数下载相应的安装包，否则无法安装)下载
+
+	64位文件提取码：https://pan.baidu.com/s/1UmSgZYxL-V3TE0IZ5nXYpg
+	提取密码：1qwd
+
+		2、在下载了合适的 Twisted 安装包后，会得到一Twisted-19.10.0-cp38-cp38-win_amd64win_amd64.whl 文 件（针对 64 位系统的），该文件就是 Twisted 安装包
+
+		3、打开命令窗口运行如下命令安装 Twisted 包：
+		pip install Twisted-18.7.0-cp36 cp36m-win_amd64 .whl
+	
+		在安装过程中会自动检查，如有必要，会自动下载并安装 Twisted所依赖的第三方包，如 zope. interface、 Automat、 incremental 等。
+	Scrapy的安装
+
+		1、安装 Scrapy 与安装其他 Python 包没有区别，同样使用如下命令来安装。
+
+			pip install scrapy 
+
+		Scrapy项目的创建--------- scrapy 是 Scrapy 框架提供的命令； startproject 是 scrapy 的子命令，专门用于创 建项目： PY_Add就是要创建的项目名 
+
+Python爬虫步骤
+	1、在命令窗口输入指令:scrapy startprojest PY_Add
+
+	2、输入cd 加 PY_Add文件物理路径，找到PY_Add文件夹
+
+	3、输入如下命令，在PY_Add创建py程序为之后爬取网站的文件（关键步骤）：scrapy genspider PY "quotes.money.163.com"
+
+	4、打开PyChram开发环境，点击左上角的File，找到Open点击后进
+入到如右边界面，找到刚在命令窗口创建的文件
+	
+	如（我的项目文件路径）：（ C:\Users\Administrator\PY_Add ）点击OK打开
+
+	5、点击项目文件夹下的items.py项目，然后开始编写数据传输的对象类（需要爬取的数据接收变量，用于页面爬取的数据传输）
+如：变量名称=scrapy.FieId
+
+	Nuber=scrapy.Field()
+    	fodecode = scrapy.Field()
+    	Name=scrapy.Field()
+    	Type=scrapy.Field()
+    	ReportDate =scrapy.Field()
+    	Abstract=scrapy.Field()
+    	DeclarationDate=scrapy.Field()
+    	recycle=scrapy.Field()
+
+	注：
+		用//div[@class］来匹配页面中任意位置处、有 class 属性的＜div… ./＞元素， 也可以使用//div/span[I ］来匹配页面中任意位置	   处的＜div… ./＞元素内的第一个＜span… ./＞子元素： 使用 //div/span[last（）］来匹配页面中任意位置处的＜div… .／＞元素 		   内的 最后一个＜span… ./＞子元素：使用 //div/span[last()-1］来匹配页面中任意位置处的＜div… ./＞元素内 的倒数第二个＜span… 	   ./＞子元素……
+	   获取页面中第一条工作信息的工作名称,该工作信 息都位于＜div class＝”job-primary＂＞元素内，因此该 XPath 的开始应该写成： 	   //div[@class=”] ob-primary” ]
+
+   	   接下来可以看到工作信息还处于＜div class=“info-primary“＞元素内，因此该 XPath 应该写成（此 处不加谓词也可以〕：//div[@class	   ＝” job-primary” ］ /div
+
+	   接下来可以看到工作信息还处于＜h3 class＝”name”＞元素内，因此该 XPath 应该写成（此处不加 谓词也可以）：//div [@class＝” j 	   ob-primary"]/div/h3
+
+	   在掌握了 XPath 的写法之后，即可在 Scrapy 的 shell 控制台调用 response 的 xpath（）方法来获取 XPath 匹配的节点。执行如下命令		   ： response .xpath (’ //div[@class=” j ob- primary” ] /div/h3/a/div/text ()’) . extract ()
+
+	6、点击spiders打开文件夹，然后打开之前创建的项目PY_Add.py（该项目主要是针对对网站数据的爬取功能）
+
+	例:import scrapy
+	   from 项目文件夹名称.items import items.py中Class后的名称
+	   class .........
+	   name='.........'
+	   #定义spider允许爬取的网页域名
+	   allowed_domains = ['quotes.money.163.com']
+    	   start_urls = ['http://quotes.money.163.com/data/caibao']
+    	   def parse(self, response):
+        	for job_prirnary in response.xpath ('//div[@class="fn_rp_list"]/table[@class="fn_cm_table"]/tr'):
+            		item = PyFileItem()
+            		item['Nuber']=job_prirnary.xpath('./td[1]/text()').re(r'(\d+)')
+            		item['fodecode'] = job_prirnary.xpath('./td[2]/a/text()').extract()
+            		item['Name'] = job_prirnary.xpath('./td[3]/a/text()').extract()
+            		item['Type'] = job_prirnary.xpath('./td[4]/text()').extract()
+            		t='20-30'
+           		 s=job_prirnary.xpath('./td[5]/text()').re(r'(\d+)')
+            		item['ReportDate'] =s
+            		item['Abstract'] = job_prirnary.xpath('./td[6]/text()').extract()
+            		item['DeclarationDate'] = job_prirnary.xpath('./td[7]/text()').re(r'^\d{4}-\d{1,2}-\d{1,2}')
+            		yield item
+		
+		#获取到下一页数据
+        	new_links = response.xpath('//a[contains(text(), "下一页")]/@href').extract()
+
+        	if new_links and len(new_links) > 0:
+            		new_link = new_links[0]
+           		yield scrapy.Request("http://quotes.money.163.com" + new_link, callback=self.parse)
+
+	7、打开项目pipelines.py编写数据输出代码
+		import json
+		import mysql.connector
+		class PyFilePipeline(object):
+			#在控制台输出
+    			# def process_item(self, item, spider):
+    			#     print ("序号：",item['Nuber'])
+    			#     print("代码:", item['fodecode'])
+    			#     print("名称:", item['Name'])
+    			#     print("类型:", item['Type'])
+    			#     print("报告期:", item['ReportDate'])
+   			#     print("摘要:", item['Abstract'])
+    			#     print("公告期:", item['DeclarationDate'])
+
+		#导入到数据库
+    		def __init__(self):
+        		self.conn = mysql.connector.connect(
+            			user='root', password='1237646LY',host='localhost', port='3306',database='excells',
+            			use_unicode=True)
+        		# 获取数据库操作游标
+        		self.cur = self.conn.cursor()
+
+    		def close_spider(self, spider):
+        		print('----------------------------关闭数据库---------------------------')
+        		self.cur.close()
+        		self.conn.close()
+
+    		def process_item(self, item, spider):
+			#此方法可能会报异常错误
+        		# self.cur.execute("INSERT INTO fode VALUES(%s,%s,%s,%s,%s,%s,%s)",
+        		#(item['Nuber'], item['fodecode'], item['Name'],
+        		#item['Type'],item['ReportDate'], item['Abstract'],
+       	 		#item['DeclarationDate']))
+			
+			#此方法可执行成功
+        		nuberstr=item['Nuber'][0]
+        		fodecode=item['fodecode'][0]
+        		Name= item['Name'][0]
+        		Type= item['Type'][0]
+        		ReportDate=item['ReportDate'][0]
+        		Abstract=item['Abstract'][0]
+        		DeclarationDate=item['DeclarationDate'][0]
+        		values = [nuberstr, fodecode, Name, Type,ReportDate, Abstract, DeclarationDate]
+        		self.cur.execute("insert into fode values (%s,%s,%s,%s,%s,%s,%s)", values)
+        		self.conn.commit()
+
+		#定义构造器，初始化预写入的文件，生成json文件
+    		# def __init__(self):
+    		#         self.json_file=open("s.json","wb+")
+    		#         self.json_file.write('\n'.encode("utf-8"))
+    		# #重写close_spider 回调方法，用于关闭文件
+    		# def close_spider(self,spider):
+    		#         print('--------------------------------关闭文件-----------------------------------------------')
+    		#         #后退两个字符，也就是去掉最后一条记录之后的换行街和逗号
+    		#         self.json_file.seek(-2,1)
+    		#         self.json_file.write('\n'.encode("utf-8"))
+    		#         self.json_file.close()
+    		# def process_item(self,item,spider):
+    		#         #将对象转换为JSON字符串
+    		#         text=json.dumps(dict(item),ensure_ascii=False)+",\n"
+    		#         #写入JSON字符串
+    		#         self.json_file.write(text.encode("utf-8"))
+	
+	8、最后一步，点击打开settings项目向下找到ITEM_PIPELINES方法解开注释
+	9、然后在编写DEFAULT_REQUEST_HEADERS方法
+		DEFAULT_REQUEST_HEADERS={
+             		"User-Agent":"Mozilla/5.0(Windows NT6.1;Win64;x64;rv:61.0)Gecko/20100101Firefox/61.0",
+			'Accept':'text/html,application/xhtml+xml,applicaion/xml;q=0.9,*/*;q=0.8'
+ }
+
+
+图解链接：https://blog.csdn.net/LY2497935393/article/details/103531297
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

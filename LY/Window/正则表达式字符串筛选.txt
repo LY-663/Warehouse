@@ -1,0 +1,37 @@
+str = Regex.Replace(str, @"[\u4e00-\u9fa5]", ""); //去除汉字
+
+str = Regex.Replace(str, @"[^\u4e00-\u9fa5]", ""); //只留汉字
+
+string result = System.Text.RegularExpressions.Regex.Replace(str, @"[^0-9]+", "");//纯数字筛选
+
+//带小数点数字筛选
+string str = "提取123.11abc提取"; //我们抓取当前字符当中的123.11
+2 str=Regex.Replace(str, @"[^\d.\d]", "");
+3 // 如果是数字，则转换为decimal类型
+4 if (Regex.IsMatch(str, @"^[+-]?\d*[.]?\d*$"))
+5 {
+6     decimal result = decimal.Parse(str);
+7     Console.WriteLine("使用正则表达式提取数字");
+8     Console.WriteLine(result);
+9 }
+
+//提取大于等于0，小于等于1的数字
+Regex.IsMatch(str, @"^([01](\.0+)?|0\.[0-9]+)$")
+
+//
+string re=Regex.Mather(数据，@"[\d]");
+
+是否有数字
+string RE=Regex.Matchers(数据,@"\d");
+
+字符替换
+Replace(需替换的值，替换值);
+
+匹配空白字符
+Regex("[\\s]+")
+
+判断英文字母与数据
+@"~[0-9A-Za-z]+$"
+
+数字
+@"~[,,0-9]*$"

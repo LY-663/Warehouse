@@ -1,0 +1,46 @@
+1、在个人页面点击New创建存储库
+
+2、填写Repository name（存储库名称）、Description（存储库描述）、设置权限（public和private两种权限）、然后根据需要，如果是要导入现有存储库，则直接点击创建存储库按钮（create repository），如果你要使用自述文件初始化存储库，则直接勾选该选项，然后在下拉框选择对应的git文件（Add.gitignore）和许可证（Add a license）
+
+3、然后会进入一个页面，在这个页面有如何教你新建存储库后的一些步骤；然后在左上方又一个电脑图标的set up Desktip按钮，这是用于进行快速设置存储库的按钮；在本文的最下方有一点注意事项，建议保存此时网页的url，因为添加远程时会用到它；最下方的左下角有一个Import code按钮，点击它会进入一个页面，然后在那个页面可以通过填写以前旧存储库的地址来将旧存储库中的文件包括修改记录等都导入到当前存储库中。
+
+4、创建本地库（两种方式）
+
+	一、点击set up Desktip按钮，会打开你的github Desktop客户端，并将你创建好的存储库克隆到一个位置（位置可以自己选择），作为你的本	    地库
+	二、用git对github进行同步，并远程提交代码
+
+		1）点击该链接https://git-for-windows.github.io/下载git
+
+		2）安装，安装完后我们会在安装地址看见的git文件里看见一些文件，如：bin 、cmd等
+
+		3）在文件中找到git-bash.exe，双击它，会出现一个命令窗口，然后输入$ ssh-keygen -t rsa -C "your_email@youremail.com"
+		这里的"your_email@youremail.com"是你注册github时候的邮箱地址。然后按回车键就可以了。
+
+		4）然后成功后会在文件对应的用户下创建.ssh文件夹其中有一个id_rsa.pub文件，复制这个文件中的Key
+
+		5）返回github，点击右上角的图标，然后点击Settings进入Account Settings（账户配置），左边选择SSH and GPG Keys选项
+
+		6）title可随意填，下面的Key这粘贴你先前在id_rsa.pub文件中复制的Key
+
+		7）验证是否绑定本地成功，在git-bash中验证，先舒服指令：$ ssh -T git@github.com，如果是第一次执行该指令，则会提示是否		continue继续，输入yes就行，然后会看见成功的信息
+
+		8）因为Github每次执行commit操作时，都会记录username和email，所以要对其进行设置：输入$ git config--global user.name 			"Allie" $git config --global user.email "16116@163.com"
+
+		9)将本地仓库上传到github，先在一个地方创建一个名为"git_repo"的文件夹作为本地仓库（这里我是创建在E盘的），然后将需要上传		的东西放入该文件中
+
+		10）然后鼠标右键点击git_repo，然后点击git bash，这时会弹出一个命令框，输入命令$ git init，初始化本地仓库，这时，我们会		在git_repo文件中发现一个.git文件（该文件是隐藏文件，让其可见需要在自己电脑设置）
+
+		11）然后在命令框输入命令：$ git add将文件添加到本地仓库，然后输入命令：$ git commit-m "初次提交"，提交文件，这时本地仓		库就建好了
+
+		12）本地仓库关联github仓库输入命令：$ git remote add origin git$github.com:Allie/HelloWorldSystem.git  其中origin后面跟		的是github上的仓库地址
+
+		13）上传本地代码到github，首先确保远程仓库不能是空的，如果为空，我们需要现在远程仓库上创建一个README.md文件
+
+		14）在本地也创建一个一模一样的README.md文件，然后在命令框中输入命令：git pull origin master远程更新一下
+
+		15）然后我们在原来的git bash中提交本地仓库中的工程源代码：$ git push -u origin master 然后在github上就能看到我们的代码		成功提交了
+
+
+这是我看的链接：写的东西基本全是来自这里
+https://blog.csdn.net/hc_ttxs/article/details/79375788
+
