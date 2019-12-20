@@ -1,0 +1,22 @@
+ //创建一个PdfDocument类对象，并加载PDF samle
+            PdfDocument doc = new PdfDocument();
+            doc.LoadFromFile(txtFile.Text);
+
+            //实例化StringBuilder类
+            StringBuilder buffer = new StringBuilder();
+            //遍历文档，提取文本
+            foreach (PdfPageBase page in doc.Pages)
+            {
+                buffer.Append(page.ExtractText());
+            }
+            this.txtPath.Text = buffer.ToString().Replace("Evaluation Warning : The document was created with Spire.PDF for .NET.", "");
+            
+            doc.Close();
+            ////保存文档
+            string fileName = @"C:\Users\Administrator\Desktop" + "\\"+DateTime.Now.ToString("yyy-MM-dd HH-mm-ss")+".TXT";
+            //String fileName = "TextInPdf.txt";
+            File.WriteAllText(fileName, txtPath.Text);
+            StreamReader sr = File.OpenText(fileName);
+            
+            System.Diagnostics.Process.Start(fileName);
+            buffer = null;
