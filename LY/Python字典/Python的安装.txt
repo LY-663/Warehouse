@@ -1,0 +1,8 @@
+Python的下载与安装步骤
+
+	1、使用浏览器输入www.python.org地址，找到Welcome to Python.org
+	2、进入到下载首页，点击Downloads找到Python3.8.0点击下载（此前我使用的是8.0版本）
+	3、下载完成后，打开下载完成的安装包，点击进入安装界面，勾选Add Python3.8 toPATH,点击Install Now进行安装
+
+详细安装步骤链接：	https://blog.csdn.net/LY2497935393/article/details/103531058
+
