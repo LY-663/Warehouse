@@ -1,0 +1,35 @@
+CREATE DATABASE stocks;
+use stocks2;
+CREATE TABLE info
+(
+	 xh VARCHAR(255),
+	 sgdm VARCHAR(255),
+	 zqdm VARCHAR(255),	
+	 name VARCHAR(255),
+	 wsfxr VARCHAR(255),
+	 ssr VARCHAR(255),
+	 fxl VARCHAR(255),	
+	 wsfxl VARCHAR(255),
+	 sgsx VARCHAR(255),
+	 fxj VARCHAR(255),
+	 syl VARCHAR(255),
+	 zql VARCHAR(255)
+)
+CREATE TABLE stock_code
+(
+	name VARCHAR(255),
+	code VARCHAR(255),
+	region VARCHAR(255)
+)
+CREATE TABLE estimation_of_net_worth_table
+(
+	code VARCHAR(255),
+	name VARCHAR(255),
+	estimated_value VARCHAR(255),
+	estimated_growth_rate VARCHAR(255),	
+	today_net_unit_value VARCHAR(255),
+	today_daily_growth_rate VARCHAR(255),
+	estimation_bias VARCHAR(255),
+	yesterday_net_unit_value VARCHAR(255),
+	is_buy VARCHAR(255)
+)
