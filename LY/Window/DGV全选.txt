@@ -1,0 +1,18 @@
+if(DGV.Rows.Count0)
+{
+	if(CK.Checked==true)
+	{
+		for(int i=0;i<dgv.Rows.Count;i++)
+		{
+			DGV.Rows[i].Cells[0].Value=true;
+		}
+	}
+	else
+	{
+		DGV.Rows[i].Cells[0].Value=false;
+	}
+}
+else
+{
+	CK.Checked=false;
+}
