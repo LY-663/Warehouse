@@ -1,0 +1,22 @@
+Public void dg_RowPostPaint(objest sender,DataGridViewRowPostPaintEventArgs e)
+{
+	DataGridView dg=sender as DataGridView;//定义获取DGV
+	Color color=dg.RowHeadersDefaltCellStyle.ForeColor;//定义单元格名称
+	if(dg.Rows[e.RowIndex].Selected)
+	{
+		color = RowHeadersDefaulCellStyle.SelectionForeColor;
+	}
+	else color = RowHeadersDefaulCellStyle.ForeColor;
+	dg.RowsDefaultCellseStyle.BackColor=Color.FromArgb(255,255,255);//定义单元格背景样式
+	dg.AlternatingRowsDefaultCellStyle.BackColor=Color.FromArgb(187,227,200);//定义DGV的奇数行背景样式
+	dg.GridColor=Color.FromArgb(208,255,255);//获取和设置网格线的颜色，网格线对DGV的单元格进行分隔
+	SolidBrush b=new SolidBrush(dg.RowHeadersDefaultCellStyle.ForeColor);
+	e.Grahics.DraString((e.RowIndex+1).ToString(System.Globalization.CultureInfo.CurrentUICultrre),dg.DefaultCellStyle.Font,b,e.RowBounds.Location.X+10,e.RowBounds.Location.Y+4);
+if(dg.Rows[e.RowIndex].DefaultCellStyle.ForeColor==SystemColors.ControlText || dg.Rows[e.RowIndex].DefaultCellStyle.ForeColor==Color.Black)
+{}
+else
+{
+	dg.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor=dg.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
+	//dg.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor=dg.Rows[e.RowIndex].DefaultCellStyle.ForeColor;
+}
+}
