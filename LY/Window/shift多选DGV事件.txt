@@ -1,0 +1,24 @@
+private Void Startow=-1;
+
+MouseClick事件
+
+if(e.Butto==MouseButtons.Left && !(Control.ModifierKeys==Kesy.Shift)) 
+{
+	Startow=this.dgv.CurrentRow.Index;
+}
+
+
+
+KeyUp
+
+if(this.dgv.SelectedCells.Count>0 && e.KeyData==Kesy.Shift)
+{
+	int endrow=tjis.dgv.CurrentRow.Index;
+	if(Startow<=endrow)
+	{
+		for(int i=Startow;i<=endrow)
+		{
+			this.dgv.Rows[i].Cells[0].Value=1;
+		}
+	}
+}
