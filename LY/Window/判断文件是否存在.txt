@@ -1,0 +1,2 @@
+string filelocation=文件路径及文件名;
+bool exist=File.Exists(filelocation);
