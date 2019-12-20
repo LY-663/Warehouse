@@ -1,0 +1,36 @@
+string file = string.Empty;
+            string ImgName = string.Empty;
+
+            OpenFileDialog OFD = new OpenFileDialog();//打开文件
+            OFD.Filter = "(*.pdf)|";//文件格式
+            if (OFD.ShowDialog() == DialogResult.OK)//打开窗体
+            {
+                file = OFD.FileName;//接收路径
+
+            }
+            //实例化PdfDocument类，并加载测试文档
+            PdfDocument doc = new PdfDocument();
+            doc.LoadFromFile(file);
+
+            IList<Image> images = new List<Image>();
+            //遍历PDF文档中诊断是否包含图片，并提取图片
+            foreach (PdfPageBase page in doc.Pages)
+            {
+                if (page.ExtractImages() != null)
+                {
+                    foreach (Image image in page.ExtractImages())
+                    {
+                        images.Add(image);
+                        pictureBox1.Image = image;
+                    }
+                }
+            }
+            doc.Close();
+
+            ////遍历提取的图片，保存并命名图片
+            //int index = 0;
+            //foreach (Image image in images)
+            //{
+            //    String imageFileName = String.Format("Image-{0}.png", index++);
+            //    image.Save(imageFileName, ImageFormat.Png);
+            //}
