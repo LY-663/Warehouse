@@ -1,0 +1,21 @@
+1、使用浏览器打开如下下载链接：
+	https://www.jetbrains.com/pycharm/download/#section=windows
+
+2、点击选择Professional(专业版)点击Download进行下载
+
+3、下载完成后点击打开安装包（navicat121_premium_cs_x64.exe）
+
+4、进入界面点击Next>,进入选择安装路径Next>下一步选择勾选
+	64-bit launcher
+
+	Add "Open=Folder as Projesct"
+
+	Add launchers dir to the PATH、py
+
+Next>下一步---------Install（安装）
+
+5、然后　ｆｉｎｉｓｈ，一个是立即重启，一个是一会自己重启
+
+6、安装完成后，获得桌面图标双击点开，一个是导入项目路径，一个是先不用，选第二个
+
+7、点击OK进入后，一路NEXT
