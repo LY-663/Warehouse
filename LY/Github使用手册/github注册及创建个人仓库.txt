@@ -1,0 +1,19 @@
+一、浏览器打开GitHub登录页：https://github.com/
+
+二、点击右上角Sign up按钮，弹出注册页
+
+三、依次填写账号、电子邮箱、密码，点击SignUPfor GitHub注册，弹出页面验证点击Next
+
+四、选择计划，点击Teams选择团队类型，选择开源团队(开源团队为免费)Choose Team for Open Source
+
+五、创建团队------依次输入准备创建的团队名称、联系电子邮箱、选择该组织的归属，点击Next下一步，点击完成设定
+
+My personal account------个人账号
+
+A business or institution-------企业/机构
+
+六、进入组织主页，点击Create a new repository(创建一个新仓库)，进入电子邮箱验证,收到邮箱后确认邮箱地址
+
+七、进入仓库创建页，在Repository name下的输入框填写仓库名称，Description（说明），选择访问类型，点击Create repository创建仓库
+
+Initialize this repository with a README------使用自述文件初始化此存储库（这将使您立即将存储库克隆到计算机）
