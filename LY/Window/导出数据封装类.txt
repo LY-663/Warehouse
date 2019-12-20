@@ -1,0 +1,68 @@
+public bool dgvExportExcel_dt(System.Data.DataTable[] dt,string outputPath,string[] sheetName)
+{
+	Interop.Excel.Application exccelApp=new Interop.Excel.Application();
+	if(dt.Length !=sheetName.Length)
+	{
+		MessageBox.Show("导出的数据与文件名的个数不一致","警告",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+		return false;
+	}
+	try
+	{
+		string path=outputPath==string.Empty ? string.Empty:Path.GetDirectoryName(outputPath);
+		if(!Directory.Exists(path))
+		{
+			Directory，CreateDirectory(Path);
+		}
+		if(System.IO.File.Exists(outpoutPath))
+		{
+			System.IO.FileInfo file=new System.IO.FileInfo(outputPath);
+			file.IsReadOnly=false;
+			System.IO.File.Delete(outputPath);
+		}
+		Interop.Excel.Workbook excelW=excelApp.Workbooks.Add(Type.Missing);
+		for(int dtIndex=0;dtIndex<dtLength;dtIndex++)
+		{
+			System.Data.DataTable dts=dt[dtIndex];
+
+			int a=excelApp.Hwnd;
+			int sheetIndex=0;
+			int colColumns=0,colRows=0;
+			
+			objest[,] rawData=new objest [dts.Rows.Count+1,dts.Coumns.Count+1];
+			for(int col=0;col<dts.Columns.Count;col++)
+			{
+				rawData[0,col]=dts.Columns[col].ColumnName;
+				colColumns++;
+			}
+			if(dt !=null)
+			{
+				for(int col=0;col<dts.Rows.Count;col++)
+				{
+					System.Data.DataRow dr=dts.Rows[col];
+					for(int row=0;row<dts.Columns.Count;row++)
+					{
+						rawData[col+1,row]=dts.Rows[col][row];
+					
+					}
+					colRows++;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
